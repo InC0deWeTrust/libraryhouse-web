@@ -1,0 +1,58 @@
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <div class="container">
+                <div class="header__row">
+                    <a class="header__logo" href="/home">
+                        LibraryHouse</a>
+                    <div class="header__navigation">
+                        <ul>
+                            <li>
+                                <a class="header__client" routerLink="/about">
+                                    <ion-icon class="header__icon" name="document-outline"></ion-icon>
+                                    <span class="header__name">About</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="header__client" routerLink="/books">
+                                    <ion-icon class="header__icon" name="library-outline"></ion-icon>
+                                    <span class="header__name">Books</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="header__client" routerLink="/authors">
+                                    <ion-icon class="header__icon" name="people-outline"></ion-icon>
+                                    <span class="header__name">Authors</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="header__client" routerLink="/profile">
+                                    <ion-icon class="header__icon" name="person-circle-outline"></ion-icon>
+                                    <span class="header__name">Profile</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="content">
+            <div class="block">
+                <h1>About</h1>
+                <br>
+                <h2>Author:</h2>
+                <p>Andrey Matviychuk</p>
+                <br>
+                <a href="https://github.com/InC0deWeTrust/">Link to GitHub</a>
+            </div>
+        </div>
+        <footer class="footer">
+            <div class='container'>
+                <div class="footer__row">
+                    <div class="footer__text">LibraryHouse 2022</div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+<router-outlet></router-outlet>

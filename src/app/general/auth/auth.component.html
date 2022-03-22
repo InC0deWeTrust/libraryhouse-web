@@ -1,0 +1,96 @@
+<body class="scroll">
+    <div class="icon">
+        <a routerLink="/home">
+            <div class=" icon__body">
+                <ion-icon name="library-outline"></ion-icon>
+            </div>
+        </a>
+    </div>
+    <div class="title">
+        <h1>Welcome to LibraryHouse</h1>
+    </div>
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <!-- [appPasswordMatch]="['password', 'confirmpassword']" -->
+            <!-- *appPasswordMatch="['signUpUserPass', 'signUpUserPassConfirm']" -->
+            <form #signUpForm="ngForm" (ngSubmit)="signUp(signUpForm.value)">
+                <h1>Create Account</h1>
+                <input type="text" name="firstname" placeholder="First name" [(ngModel)]="signUpUser.firstName" #signUpFirstName="ngModel" required maxlength="64">
+                <div class="left-side" *ngIf="signUpFirstName.invalid && (signUpFirstName.dirty || signUpFirstName.touched)">
+                    <div class="error" *ngIf="signUpFirstName.errors?.['required']">First name is required</div>
+                    <div class="error" *ngIf="signUpFirstName.errors?.['maxlength']">Max length is 64 symbols</div>
+                </div>
+                <input type="text" name="lastname" placeholder="Last name" [(ngModel)]="signUpUser.lastName" #signUpLastName="ngModel" required maxlength="64">
+                <div class="left-side" *ngIf="signUpLastName.invalid && (signUpLastName.dirty || signUpLastName.touched)">
+                    <div class="error" *ngIf="signUpLastName.errors?.['required']">Last name is required</div>
+                    <div class="error" *ngIf="signUpLastName.errors?.['maxlength']">Max length is 64 symbols</div>
+                </div>
+                <input type="text" name="address" placeholder="Address" [(ngModel)]="signUpUser.address" #signUpAddress="ngModel" required maxlength="128">
+                <div class="left-side" *ngIf="signUpAddress.invalid && (signUpAddress.dirty || signUpAddress.touched)">
+                    <div class="error" *ngIf="signUpAddress.errors?.['required']">Address is required</div>
+                    <div class="error" *ngIf="signUpAddress.errors?.['maxlength']">Max length is 128 symbols</div>
+                </div>
+                <input type="text" name="passportData" placeholder="Passport Data" [(ngModel)]="signUpUser.passportData" #signUpPassportData="ngModel" required maxlength="64">
+                <div class="left-side" *ngIf="signUpPassportData.invalid && (signUpPassportData.dirty || signUpPassportData.touched)">
+                    <div class="error" *ngIf="signUpPassportData.errors?.['required']">Passport Data is required</div>
+                    <div class="error" *ngIf="signUpPassportData.errors?.['maxlength']">Max length is 64 symbols</div>
+                </div>
+                <input type="text" name="telephoneNumber" placeholder="Telephone Number" [(ngModel)]="signUpUser.telephoneNumber" #signUpPhoneNumber="ngModel" required maxlength="10" minlength="10">
+                <div class="left-side" *ngIf="signUpPhoneNumber.invalid && (signUpPhoneNumber.dirty || signUpPhoneNumber.touched)">
+                    <div class="error" *ngIf="signUpPhoneNumber.errors?.['required']">Phone number is required</div>
+                    <div class="error" *ngIf="signUpPhoneNumber.errors?.['minlength']">Phone number should have at least 10 digits</div>
+                    <div class="error" *ngIf="signUpPhoneNumber.errors?.['maxlength']">Phone number cann't contain more than 10 digits</div>
+                </div>
+                <input type="email" name="email" placeholder="Email" [(ngModel)]="signUpUser.email" #signUpEmail="ngModel" required email maxlength="64">
+                <div class="left-side" *ngIf="signUpEmail.invalid && (signUpEmail.dirty || signUpEmail.touched)">
+                    <div class="error" *ngIf="signUpEmail.errors?.['required']">Email is required</div>
+                    <div class="error" *ngIf="signUpEmail.errors?.['email']">This should be an email</div>
+                    <div class="error" *ngIf="signUpEmail.errors?.['maxlength']">Max length is 64 symbols</div>
+                </div>
+                <input type="password" name="password" placeholder="Password" [(ngModel)]="signUpUser.password" #signUpUserPass="ngModel" required maxlength="64">
+                <div class="left-side" *ngIf="signUpUserPass.invalid && (signUpUserPass.dirty || signUpUserPass.touched)">
+                    <div class="error" *ngIf="signUpUserPass.errors?.['required']">Password is required</div>
+                    <div class="error" *ngIf="signUpUserPass.errors?.['maxlength']">Max length is 64 symbols</div>
+                </div>
+                <!-- <input type="password" name="confirmpassword" placeholder="Confirm password">
+                <div *ngIf="signUpUserPassConfirm.touched && signUpUserPassConfirm.errors?.['passwordMismatch']">Passwords are not the same</div> -->
+                <button class="button button__green btn1" [disabled]="!signUpForm.valid">Sign Up</button>
+            </form>
+        </div>
+        <div class="form-container sign-in-container">
+            <form #loginForm="ngForm" (ngSubmit)="logIn(loginForm.value)">
+                <div class="error error-box" *ngIf="testBool">Your email or password is incorrect. Please, try again.</div>
+                <h1>Sign in</h1>
+                <input type="text" name="email" placeholder="Email" [(ngModel)]="signInUser.email" #signInEmail="ngModel" required email maxlength="64">
+                <div class="left-side" *ngIf="signInEmail.invalid && (signInEmail.dirty || signInEmail.touched)">
+                    <div class="error" *ngIf="signInEmail.errors?.['required']">Email is required</div>
+                    <div class="error" *ngIf="signInEmail.errors?.['email']">This should be an email</div>
+                    <div class="error" *ngIf="signInEmail.errors?.['maxlength']">Max length is 64 symbols</div>
+                </div>
+                <input type="password" name="password" placeholder="Password" [(ngModel)]="signInUser.password" #signInPass="ngModel" required maxlength="64">
+                <div class="left-side" *ngIf="signInPass.invalid && signInPass.dirty">
+                    <div class="error" *ngIf="signInPass.errors?.['required']">Password is required</div>
+                    <div class="error" *ngIf="signInPass.errors?.['maxlength']">Max length is 64 symbols</div>
+                </div>
+                <a href="#">Forgot your password?</a>
+                <button type="submit" class="button button__green btn1" [disabled]="!loginForm.valid">Sign In</button>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Welcome Back!</h1>
+                    <p>To keep connected with us please login with your personal info</p>
+                    <button class="button button__ghost" id="signIn" (click)="signUpAnimate()">Sign In</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Hello, Friend!</h1>
+                    <p>Enter your personal details and start journey with us</p>
+                    <button class="button button__ghost" id="signUp" (click)="logInAnimate()">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<router-outlet></router-outlet>

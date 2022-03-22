@@ -1,0 +1,36 @@
+.content {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    font-size: 36px;
+    color: #fff5ca;
+    text-shadow: 0px 0px 10px black;
+}
+
+.grid__body {
+    display: grid;
+    grid-template: repeat(2, 150px) / repeat(6, 150px);
+    margin-bottom: 30px;
+}
+
+.grid__item {
+    text-align: center;
+    background: white;
+    margin: 3px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.grid__item:hover {
+    transform: scale(1.1, 1.1);
+    box-shadow: 0px 0px 30px 9px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease-in-out;
+}
+
+.grid__item__big {
+    grid-row-start: span 2;
+    grid-column-start: span 2;
+}

@@ -1,0 +1,37 @@
+<div class="table">
+<label>Users</label>
+<table>
+    <tr class="tr__header">
+        <td>User Id</td>
+        <td>First name</td>
+        <td>Last name</td>
+        <td>User name</td>
+        <td>Delete user</td>
+        <td>Assign Role</td>
+        <td>Unsign Role</td>
+    </tr>
+    <tr *ngFor="let user of users">
+        <td>{{user.userId}}</td>
+        <td>{{user.firstName | titlecase}}</td>
+        <td>{{user.lastName | titlecase}}</td>
+        <td>{{user.userName}}</td>
+        <td><button class="button button__red" (click)="deleteUser(user.userId)">Delete</button></td>
+        <td>
+            <form #RoleAdd="ngForm" (ngSubmit)="assignRoleForUser(user.userId, RoleAdd.value.roleId)">
+                <select name="roleId" ngModel>
+                    <option *ngFor="let role of roles" value="{{role.roleId}}">{{role.name}}</option>
+                </select>
+                <button class="button button__circle button__green">+</button>
+            </form>
+        </td>
+        <td>
+            <form #RoleDelete="ngForm" (ngSubmit)="unsignRoleForUser(user.userId, RoleDelete.value.roleId)">
+                <select name="roleId" ngModel>
+                    <option *ngFor="let role of roles" value="{{role.roleId}}">{{role.name}}</option>
+                </select>
+                <button class="button button__circle button__red">-</button>
+            </form>
+        </td>
+    </tr>
+</table>
+</div>

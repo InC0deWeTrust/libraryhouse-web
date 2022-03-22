@@ -1,0 +1,33 @@
+
+    <div class="column">
+        <div class="dashboard">
+            <div>
+                <div class="dashboard__title">Admin Panel</div>
+                <a *ngIf="_router.url === '/admin/books'" class="active" routerLink="books">Admin books</a>
+                <a *ngIf="_router.url !== '/admin/books'" routerLink="books">Admin books</a>
+    
+                <a *ngIf="_router.url === '/admin/users'" class="active" routerLink="users">Admin users</a>
+                <a *ngIf="_router.url !== '/admin/users'" routerLink="users">Admin users</a>
+    
+                <a *ngIf="_router.url === '/admin/roles'" class="active" routerLink="roles">Admin roles</a>
+                <a *ngIf="_router.url !== '/admin/roles'" routerLink="roles">Admin roles</a>
+            </div>
+
+            <a class="home" routerLink="/home">Back to Home</a>
+        </div>
+        <div class="main">
+            <body>
+            <div *ngIf="_router.url === '/admin/books'">
+                <app-books-admin></app-books-admin>
+            </div>
+            <div *ngIf="_router.url === '/admin/roles'">
+                <app-role-admin></app-role-admin>
+            </div>
+            <div *ngIf="_router.url === '/admin/users'">
+                <app-users-admin></app-users-admin>
+            </div>
+        </body>
+        </div>
+    </div>
+<router-outlet></router-outlet>
+

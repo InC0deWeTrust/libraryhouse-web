@@ -1,0 +1,72 @@
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <div class="container">
+                <div class="header__row">
+                    <a class="header__logo" routerLink="/Home">
+                        LibraryHouse</a>
+                    <div class="header__navigation">
+                        <ul>
+                            <li>
+                                <a class="header__client" routerLink="/about">
+                                    <ion-icon class="header__icon" name="document-outline"></ion-icon>
+                                    <span class="header__name">About</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="header__client" routerLink="/books">
+                                    <ion-icon class="header__icon" name="library-outline"></ion-icon>
+                                    <span class="header__name">Books</span>
+                                </a>
+                            </li>
+                            <li class="active">
+                                <a class="header__client" routerLink="/authors">
+                                    <ion-icon class="header__icon" name="people-outline"></ion-icon>
+                                    <span class="header__name">Authors</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="header__client" routerLink="/profile">
+                                    <ion-icon class="header__icon" name="person-circle-outline"></ion-icon>
+                                    <span class="header__name">Profile</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="content">
+            <ul>
+                <li *ngFor="let author of authors">
+                    <a href="/authors#info" (click)="getAuthor(author.authorId)">
+                        <img src="../../assets/img/person-icon.png" alt="person">
+                        <span>{{author.firstName}} {{author.lastName}}</span>
+                    </a>
+                </li>
+            </ul>
+            <div id="info" class="popup">
+                <a href="/authors#" class="popup__area"></a>
+                <div class="popup__body">
+                    <div class="popup__content">
+                        <a href="/authors#" class="popup__close">X</a>
+                        <div class="popup__title">Full info about author</div>
+                        <div class="popup__info">
+                            <div><span>First name:</span> {{author.firstName | titlecase}}</div>
+                            <div><span>Last name:</span> {{author.lastName | titlecase}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer">
+            <div class='container'>
+                <div class="footer__row">
+                    <div class="footer__text">LibraryHouse 2022</div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+
+<router-outlet></router-outlet>

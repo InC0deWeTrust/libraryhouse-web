@@ -1,0 +1,40 @@
+td{
+    padding: 0 15px 0;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.tr__header{
+    font-weight: 700;
+    font-size: 20px;   
+}
+
+.table{
+    margin: 20px;
+}
+
+form{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 5px;
+}
+
+input, select{
+    border: 1px solid black;
+    margin: 5px;
+    height: 30px;
+    width: 150px;
+    background: rgba(145, 145, 145, 0.1);
+    padding: 0 10px 0;
+}
+
+label{
+    font-size: 36px;
+    font-weight: 700;
+
+}
+
+button{
+    margin: 0 10px 0;
+}

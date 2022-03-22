@@ -1,1 +1,285 @@
 /* You can add global styles to this file, and also import other style files */
+*,
+*:before,
+*:after {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+:focus,
+:active {
+    outline: none;
+}
+
+a:focus,
+a:active {
+    outline: none;
+}
+
+nav,
+footer,
+header,
+aside {
+    display: block;
+}
+
+html,
+body {
+    background: url("images/bg.jpg");
+    height: 100%;
+    width: 100%;
+    font-size: 100%;
+    line-height: 1;
+    font-size: 14px;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+input,
+button,
+textarea {
+    font-family: inherit;
+}
+
+input::-ms-clear {
+    display: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+button::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+}
+
+a,
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+ul li {
+    list-style: none;
+}
+
+img {
+    vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+body body {
+    overflow-y: scroll;
+}
+
+/*----------*/
+.wrapper {
+    min-height: 100%;
+    overflow: hidden;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+.header {
+    background-color: rgb(114, 71, 41);
+}
+
+.header__row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    height: 60px;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 3px 20px;
+}
+
+.header__logo {
+    font-size: 40px;
+}
+
+.header__name {
+    position: relative;
+    top: -5px;
+    font-size: 20px;
+}
+
+.header__icon {
+    position: relative;
+    top: 2px;
+    padding-right: 4px;
+}
+
+.header li {
+    display: inline-block;
+    border-radius: 10px;
+    margin: 0 30px 0 0px;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+}
+
+.header li:last-child {
+    margin: 0;
+}
+
+.header li a {
+    margin: 5px;
+}
+
+.header li:hover {
+    background: rgba(255, 255, 255, 0.8);
+    color: black;
+}
+
+.header li:hover span {
+    color: black;
+}
+
+.header li:hover ion-icon {
+    color: black;
+}
+
+.header a {
+    color: white;
+    font-size: 30px;
+}
+
+.active {
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+}
+
+.footer {
+    background: rgb(114, 71, 41);
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.footer__row {
+    height: 50px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.footer__text {
+    font-size: 16px;
+}
+
+/*------Button---------*/
+.button {
+    border-radius: 20px;
+    border: 1px solid;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    -webkit-transition: -webkit-transform 80ms ease-in;
+    transition: -webkit-transform 80ms ease-in;
+    transition: transform 80ms ease-in;
+    transition: transform 80ms ease-in, -webkit-transform 80ms ease-in;
+}
+
+button:active {
+    -webkit-transform: scale(0.95);
+    transform: scale(0.95);
+}
+
+.button__black {
+    background-color: transparent;
+    border-color: black;
+    color: black;
+}
+
+.button__green {
+    background-color: green;
+    border-color: green;
+    color: white;
+}
+
+.button__circle {
+    height: 36px;
+    width: 36px;
+    padding: 0 0;
+    font-size: 36px;
+    font-weight: 400;
+
+}
+
+.button__red {
+    background-color: red;
+    border: red;
+    color: #ffffff;
+}
+
+.button__ghost {
+    background-color: transparent;
+    border-color: rgb(251, 228, 212);
+    color: rgb(251, 228, 212);
+}
+
+.error{
+    color: red;
+    justify-self: flex-start;
+    align-self: flex-start;
+    
+    &::before{
+        content: '●';
+        position: relative;
+        top: -1px;
+        left: -3px;
+    }
+}
+
+.error-box{
+    background: rgba($color: red, $alpha: 0.1);
+    border: 2px solid red;
+    border-radius: 10px;
+    padding: 5px;
+    margin-bottom: 20px;
+}
+
+.left-side{
+    position: relative;
+    left: 3px;
+    justify-self: flex-start;
+    align-self: flex-start;
+}

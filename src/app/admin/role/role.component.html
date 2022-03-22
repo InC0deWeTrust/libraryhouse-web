@@ -1,0 +1,32 @@
+<div>
+<form #CreateNewRole="ngForm" (ngSubmit)="createNewRole(CreateNewRole.value)">
+    <label>Create role</label>
+    <input type="text" name="name" placeholder="Name" ngModel>
+    <button class="button button__green btn">Create</button>
+</form>
+
+<form #UpdateRole="ngForm" (ngSubmit)="updateRole(UpdateRole.value)">
+    <label>Rename role</label>
+    <select name="roleId" ngModel>
+        <option *ngFor="let role of roles" value="{{role.roleId}}">{{role.name}}</option>
+    </select>
+    <input type="text" name="name" placeholder="New name" ngModel>
+    <button class="button button__green btn">Rename</button>
+</form>
+
+<div class="table">
+    <label>Roles</label>
+    <table>   
+        <tr class="tr__header">
+            <td>Role Id</td>
+            <td>Role name</td>
+            <td>Delete role</td>
+        </tr>
+        <tr *ngFor="let role of roles">
+            <td>{{role.roleId}}</td>
+            <td>{{role.name}}</td>
+            <td><button class="button button__red" (click)="deleteRole(role.roleId)">Delete</button></td>
+        </tr>    
+    </table>
+</div>
+</div>

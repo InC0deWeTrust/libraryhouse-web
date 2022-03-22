@@ -1,0 +1,45 @@
+<div>
+<form #CreateNewBook="ngForm" (ngSubmit)='createNewBook(CreateNewBook.value.name, CreateNewBook.value.bookType, CreateNewBook.value.author, CreateNewBook.value.authorName, CreateNewBook.value.authorSurname)'>
+    <label>Create book</label>
+    <input type="text" name="name" placeholder="Name" ngModel>
+    <select name="bookType" ngModel>
+        <option *ngFor="let bookType of bookTypes" value="{{bookType.bookType}}">{{bookType.bookType}}</option>
+    </select>
+    <select name="author" ngModel>
+        <option value="newAuthor">New Author...</option>
+        <option *ngFor="let author of authors" value="{{author.firstName}} {{author.lastName}}">{{author.firstName | titlecase}} {{author.lastName | titlecase}}</option>
+    </select>
+    <input type="text" *ngIf="CreateNewBook.value.author === 'newAuthor'" name="authorName" placeholder="Author name" ngModel>
+    <input type="text" *ngIf="CreateNewBook.value.author === 'newAuthor'" name="authorSurname" placeholder="Author surname" ngModel>
+    <button class="button button__green btn">Create</button>
+</form>
+
+<form #ChangeType="ngForm" (ngSubmit)="updateBook(ChangeType.value)">
+    <label>Change Type for Book</label>
+    <select name="bookId" ngModel>
+        <option *ngFor="let book of books" value="{{book.bookId}}">{{book.name | titlecase}}</option>
+    </select>
+    <select name="bookType" ngModel>
+        <option *ngFor="let bookType of bookTypes" value="{{bookType.bookType}}">{{bookType.bookType}}</option>
+    </select>
+    <button class="button button__green btn">Change</button>
+</form>
+
+<div class="table">
+    <label>Books</label>
+    <table>   
+        <tr class="tr__header">
+            <td>Book name</td>
+            <td>Delete book</td>
+        </tr>
+        <tr *ngFor="let book of books">
+            <td>{{book.name | titlecase}}</td>
+            <td><button class="button button__red" (click)="deleteBook(book.bookId)">Delete</button></td>
+        </tr>    
+    </table>
+</div>
+</div>
+
+
+
+
