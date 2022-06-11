@@ -8,6 +8,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { ErrorInterceptor } from './helpers/error.interceptor';
 import { JwtModule } from '@auth0/angular-jwt';
+import { JwPaginationModule } from 'jw-angular-pagination';
 
 import { AppComponent } from './app.component';
 
@@ -61,6 +62,7 @@ export function tokenGetter(){
     IonicModule.forRoot(),
     FormsModule,
     HttpClientModule,
+    JwPaginationModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter

@@ -25,19 +25,22 @@
     <button class="button button__green btn">Change</button>
 </form>
 
-<div class="table">
-    <label>Books</label>
-    <table>   
-        <tr class="tr__header">
-            <td>Book name</td>
-            <td>Delete book</td>
-        </tr>
-        <tr *ngFor="let book of books">
-            <td>{{book.name | titlecase}}</td>
-            <td><button class="button button__red" (click)="deleteBook(book.bookId)">Delete</button></td>
-        </tr>    
-    </table>
-</div>
+    <div class="table">
+        <label>Books</label>
+        <table>   
+            <tr class="tr__header">
+                <td>Book name</td>
+                <td>Delete book</td>
+            </tr>
+            <tr *ngFor="let book of pageOfItems">
+                <td>{{book.name | titlecase}}</td>
+                <td><button class="button button__red" (click)="deleteBook(book.bookId)">Delete</button></td>
+            </tr>
+        </table>
+        <div class="card-footer">
+            <jw-pagination [items]="books" (changePage)="onChangePage($event)" [pageSize]=numOfPages></jw-pagination>
+        </div>
+    </div>
 </div>
 
 

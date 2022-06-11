@@ -20,7 +20,9 @@ export class AdminBooksComponent implements OnInit {
   public author: AuthorDto;
   public authors: AuthorDto[];
   public bookTypes: BookTypeDto[];
-  public currentUrl: string | undefined
+  public currentUrl: string | undefined;
+  public pageOfItems: Array<any> = [];
+  public numOfPages: number = 5;
 
   constructor(
     private _httpClient: HttpClient,
@@ -39,6 +41,9 @@ export class AdminBooksComponent implements OnInit {
     this._bookService.getAll().subscribe(result => {
       this.books = result;
     })
+
+    this.pageOfItems = this.books;
+    //this.books.map((x,i) => ())
 
     this._bookService.getAllTypes().subscribe(result => {
       this.bookTypes = result;
@@ -89,5 +94,9 @@ export class AdminBooksComponent implements OnInit {
     this._authorService.get(authorId).subscribe(result => {
       this.author = result;
     });
+  }
+
+  public onChangePage(pageOfItems: Array<any>){
+    this.pageOfItems = pageOfItems;
   }
 }
