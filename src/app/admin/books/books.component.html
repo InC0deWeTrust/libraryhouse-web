@@ -1,16 +1,19 @@
 <div>
-<form #CreateNewBook="ngForm" (ngSubmit)='createNewBook(CreateNewBook.value.name, CreateNewBook.value.bookType, CreateNewBook.value.author, CreateNewBook.value.authorName, CreateNewBook.value.authorSurname)'>
+<form #CreateNewBook="ngForm" (ngSubmit)='createNewBook(CreateNewBook.value.name, CreateNewBook.value.bookType, CreateNewBook.value.author, CreateNewBook.value.authorName, CreateNewBook.value.authorSurname, CreateNewBook.value.description)'>
     <label>Create book</label>
     <input type="text" name="name" placeholder="Name" ngModel>
     <select name="bookType" ngModel>
         <option *ngFor="let bookType of bookTypes" value="{{bookType.bookType}}">{{bookType.bookType}}</option>
     </select>
-    <select name="author" ngModel>
+    <input style="margin-bottom: 0px;" type="tex" name="search" placeholder="Search authors..." [(ngModel)]="searchFilterAuthors">
+    <select style="margin-top: -1px; margin-bottom: 0px;" name="author" ngModel>
         <option value="newAuthor">New Author...</option>
-        <option *ngFor="let author of authors" value="{{author.firstName}} {{author.lastName}}">{{author.firstName | titlecase}} {{author.lastName | titlecase}}</option>
+        <option *ngFor="let author of authors | searchFilterAuthors: searchFilterAuthors" value="{{author.firstName}} {{author.lastName}}">{{author.lastName | titlecase}} {{author.firstName | titlecase}}</option>
     </select>
-    <input type="text" *ngIf="CreateNewBook.value.author === 'newAuthor'" name="authorName" placeholder="Author name" ngModel>
-    <input type="text" *ngIf="CreateNewBook.value.author === 'newAuthor'" name="authorSurname" placeholder="Author surname" ngModel>
+    <input style="margin-bottom: 0px; margin-top: -1px;" type="text" *ngIf="CreateNewBook.value.author === 'newAuthor'" name="authorName" placeholder="Author name" ngModel>
+    <input style="margin-top: -1px;" type="text" *ngIf="CreateNewBook.value.author === 'newAuthor'" name="authorSurname" placeholder="Author surname" ngModel>
+    <textarea rows = "5" name = "description" name="description" placeholder="Description..." ngModel></textarea>
+    <!-- <input style="margin-top: 10px;" rows="3" name="description" placeholder="Description" ngModel> -->
     <button class="button button__green btn">Create</button>
 </form>
 
@@ -25,6 +28,20 @@
     <button class="button button__green btn">Change</button>
 </form>
 
+<form #PictureBook="ngForm" (ngSubmit)="uploadPictureForBook(PictureBook.value.bookId)">
+    <label>Picture Upload File</label>
+    <input type="text" name="bookId" placeholder="BookId..." ngModel>
+    <input type="file" id="file" (change)="getPicture($event)">
+    <button class="button button__green btn">Add</button>
+</form>
+
+<form #PdfUploadBook="ngForm" (ngSubmit)="uploadPDFForBook(PdfUploadBook.value.bookId)">
+    <label>PDF Upload File</label>
+    <input type="text" name="bookId" placeholder="BookId..." ngModel>
+    <input type="file" id="file" (change)="getPdf($event)">
+    <button class="button button__green btn">Add</button>
+</form>
+
     <div class="table">
         <label>Books</label>
         <table>   
@@ -32,14 +49,14 @@
                 <td>Book name</td>
                 <td>Delete book</td>
             </tr>
-            <tr *ngFor="let book of pageOfItems">
-                <td>{{book.name | titlecase}}</td>
+            <tr class="tr__header">
+                <td colspan="2"><input type="text" placeholder="Search" [(ngModel)]="searchFilter"></td> 
+            </tr>
+            <tr *ngFor="let book of books | searchFilter: searchFilter" class="pagination">
+                <td class="page-item">{{book.name | titlecase}}</td>
                 <td><button class="button button__red" (click)="deleteBook(book.bookId)">Delete</button></td>
             </tr>
         </table>
-        <div class="card-footer">
-            <jw-pagination [items]="books" (changePage)="onChangePage($event)" [pageSize]=numOfPages></jw-pagination>
-        </div>
     </div>
 </div>
 

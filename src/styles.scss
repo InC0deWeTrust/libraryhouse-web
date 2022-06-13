@@ -218,6 +218,19 @@ body body {
     transition: transform 80ms ease-in, -webkit-transform 80ms ease-in;
 }
 
+.button__search {
+    border-radius: 50%;
+    border: 2px solid;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 5px 6px;
+    letter-spacing: 1px;
+    -webkit-transition: -webkit-transform 80ms ease-in;
+    transition: -webkit-transform 80ms ease-in;
+    transition: transform 80ms ease-in;
+    transition: transform 80ms ease-in, -webkit-transform 80ms ease-in;
+}
+
 button:active {
     -webkit-transform: scale(0.95);
     transform: scale(0.95);
@@ -254,6 +267,11 @@ button:active {
     background-color: transparent;
     border-color: rgb(251, 228, 212);
     color: rgb(251, 228, 212);
+
+    &__black {
+        border-color: black;
+        color: black;
+    }
 }
 
 .error{

@@ -10,8 +10,10 @@ import { RoleServiceProxy, RoleDto } from 'src/shared/service-proxies/service-pr
 })
 export class AdminUsersComponent implements OnInit {
   public user: UserDto | undefined;
-  public users: UserDto[] | undefined;
+  public users: UserDto[] = [];
   public roles: RoleDto[] | undefined;
+
+  public page: number = 1;
 
   constructor(
     private _httpClient: HttpClient,

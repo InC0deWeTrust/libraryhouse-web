@@ -6,7 +6,8 @@ CreateBookDto,
 BookTypeDto,
 UpdateBookDto,
 AuthorDto, 
-AuthorServiceProxy } from 'src/shared/service-proxies/service-proxies';
+AuthorServiceProxy,
+FileParameter} from 'src/shared/service-proxies/service-proxies';
 import { Router } from '@angular/router';
 
 @Component({
@@ -21,8 +22,12 @@ export class AdminBooksComponent implements OnInit {
   public authors: AuthorDto[];
   public bookTypes: BookTypeDto[];
   public currentUrl: string | undefined;
-  public pageOfItems: Array<any> = [];
-  public numOfPages: number = 5;
+
+  public pdfForUpload!: Object | null;
+  public picForUpload!: Object | null;
+
+  public searchFilter: any = '';
+  public searchFilterAuthors: any = '';
 
   constructor(
     private _httpClient: HttpClient,
@@ -42,9 +47,6 @@ export class AdminBooksComponent implements OnInit {
       this.books = result;
     })
 
-    this.pageOfItems = this.books;
-    //this.books.map((x,i) => ())
-
     this._bookService.getAllTypes().subscribe(result => {
       this.bookTypes = result;
     })
@@ -56,7 +58,7 @@ export class AdminBooksComponent implements OnInit {
     this.currentUrl = this._router.url;
   }
 
-  public createNewBook(val1: string, val2: string, val3: string, val4: string, val5: string){
+  public createNewBook(val1: string, val2: string, val3: string, val4: string, val5: string, val6: string){
     const newBook = new CreateBookDto;
     newBook.name = val1;
     newBook.bookType = val2;
@@ -70,6 +72,7 @@ export class AdminBooksComponent implements OnInit {
         newBook.authorSurname = author[1];
       }
     }
+    newBook.description = val6;
     this._bookService.create(newBook).subscribe(x =>
       window.location.reload());
   }
@@ -96,7 +99,23 @@ export class AdminBooksComponent implements OnInit {
     });
   }
 
-  public onChangePage(pageOfItems: Array<any>){
-    this.pageOfItems = pageOfItems;
+  public uploadPictureForBook(bookId: number){
+    this._bookService.addPictureToBook(bookId, <FileParameter>this.picForUpload).subscribe();
+  }
+
+  public getPicture(event: any){
+    this.picForUpload = {
+      data: event.target.files[0]
+    }
+  }
+
+  public getPdf(event: any){
+    this.pdfForUpload = {
+      data: event.target.files[0]
+    }
+  }
+
+  public uploadPDFForBook(bookId: number){
+    this._bookService.addPdf(bookId, <FileParameter>this.pdfForUpload).subscribe();
   }
 }

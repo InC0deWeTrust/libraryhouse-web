@@ -10,7 +10,7 @@
         <td>Assign Role</td>
         <td>Unsign Role</td>
     </tr>
-    <tr *ngFor="let user of users">
+    <tr *ngFor="let user of users | paginate: {itemsPerPage: 5, currentPage: page}">
         <td>{{user.userId}}</td>
         <td>{{user.firstName | titlecase}}</td>
         <td>{{user.lastName | titlecase}}</td>
@@ -34,4 +34,5 @@
         </td>
     </tr>
 </table>
+<pagination-controls (pageChange)="page = $event"></pagination-controls>
 </div>

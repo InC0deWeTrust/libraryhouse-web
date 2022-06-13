@@ -54,6 +54,12 @@
                         <div class="popup__info">
                             <div><span>First name:</span> {{author.firstName | titlecase}}</div>
                             <div><span>Last name:</span> {{author.lastName | titlecase}}</div>
+                            <div><span>&#11088;Author books:</span></div>
+                            <ul>
+                                <li *ngFor="let book of author.bookNames">
+                                    <span>{{book | titlecase}}</span>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>

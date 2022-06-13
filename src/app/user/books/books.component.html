@@ -5,6 +5,12 @@
                 <div class="header__row">
                     <a class="header__logo" routerLink="/home">
                         LibraryHouse</a>
+                    <div class="mb-3">
+                        <input style="position: relative; top: -3px" type="text" 
+                            placeholder="Search by book name..." aria-label="Recipient's username" aria-describedby="button-addon2"
+                            [(ngModel)]="searchFilter">
+                        <!-- <button class="button__search button__ghost" type="button"><ion-icon style="font-size: 20px;" name="search-outline"></ion-icon></button> -->
+                    </div>
                     <div class="header__navigation">
                         <ul>
                             <li>
@@ -39,16 +45,19 @@
         <div class="navig">
             <ul>
                 <li *ngFor="let bookType of bookTypes">
-                    <a href="#">{{bookType.bookType}}</a>
+                    <a (click)="search(bookType.typeId)">{{bookType.bookType}}</a>
                 </li>
             </ul>
         </div>
         <div class="content">
             <ul>
-                <li *ngFor="let book of books">
+                <li *ngFor="let book of books | searchFilter: searchFilter">
                     <a href="/books#info" (click)="getFullInfoAboutBook(book.bookId)">
-                        <img src="../../assets/img/book-icon.png" alt="Book icon">
+                        <img style="height: 200px; width: 150px" *ngIf="book.pictureResult != null; else elsePicture" src="data:image/png;base64,{{book.pictureResult}}" alt="Book icon">
                         <span>{{book.name}}</span>
+                        <ng-template #elsePicture>
+                            <img style="height: 200px; width: 150px" src="../../assets/img/book-icon.png" alt="Book icon">
+                        </ng-template>
                     </a>
                 </li>
             </ul>
@@ -65,11 +74,10 @@
                             <div><span>Author:</span> {{fullInfoBook.author?.firstName | titlecase}}
                                 {{fullInfoBook.author?.lastName
                                 | titlecase}}</div>
-                            <div class="buttons-row">
-                                <button (click)="reserveBook(fullInfoBook.bookId)"
-                                    class="button button__green">Reserve</button>
-                                <button (click)="returnBook(fullInfoBook.bookId)"
-                                    class="button button__red">Return</button>
+                            <div><span>&#11088;Description:</span> {{fullInfoBook.description}} </div>
+                            <div style="display: flex; justify-content: center;">
+                                <button (click)="downloadBook(fullInfoBook.bookId, fullInfoBook.name)"
+                                    class="button button__green" style="font-size: 12px;"><span style="text-decoration: none; position: relative; top: -4px;">Download</span><ion-icon style="font-size: 20px;" name="download-outline"></ion-icon></button>
                             </div>
                         </div>
                     </div>

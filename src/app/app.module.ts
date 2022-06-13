@@ -8,14 +8,14 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { ErrorInterceptor } from './helpers/error.interceptor';
 import { JwtModule } from '@auth0/angular-jwt';
-import { JwPaginationModule } from 'jw-angular-pagination';
-
-import { AppComponent } from './app.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 //LH modules
 import { GeneralModule } from './general/general.module';
 import { AdminModule } from './admin/admin.module';
 import { UserModule } from './user/user.module';
+import { AppComponent } from './app.component';
 
 //General components
 import { AboutComponent } from './general/about/about.component';
@@ -35,6 +35,9 @@ import { AdminUsersComponent } from './admin/users/users.component';
 
 //Directives
 import { PasswordMatchDirective } from './directives/password-match.directive';
+import { SpinnerComponent } from './spinner/spinner.component';
+import { SearchFilterPipe } from './pipes/search-filter.pipe';
+import { SearchFilterAuthorsPipe } from './pipes/search-filter-authors.pipe';
 
 export function tokenGetter(){
   return localStorage.getItem("access_token");
@@ -53,16 +56,20 @@ export function tokenGetter(){
     AdminBooksComponent,
     AdminRoleComponent,
     AdminUsersComponent,
-    PasswordMatchDirective
+    PasswordMatchDirective,
+    SpinnerComponent,
+    SearchFilterPipe,
+    SearchFilterAuthorsPipe
   ],
   imports: [
     BrowserModule,
+    NgxSpinnerModule,
+    NgxPaginationModule,
     AppRoutingModule,
     ServiceProxyModule,
     IonicModule.forRoot(),
     FormsModule,
     HttpClientModule,
-    JwPaginationModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter
